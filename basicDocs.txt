@@ -1,0 +1,1693 @@
+﻿Documentación InmoMarket web app
+---
+
+
+### Sección 1: Concepto y Descripción General
+
+
+#### Nombre Tentativo
+**InmoMarket** 
+
+
+#### Descripción
+InmoMarket es una plataforma web diseñada para simplificar la compra, venta y alquiler de propiedades inmobiliarias. Conecta a compradores, vendedores y agentes inmobiliarios en un entorno digital intuitivo, seguro y eficiente, permitiendo a los usuarios explorar, listar y gestionar propiedades desde un solo lugar.
+
+
+#### Funcionalidades Principales
+- **Búsqueda Avanzada de Propiedades:** Los usuarios pueden buscar propiedades utilizando filtros como ubicación, tipo (casa, departamento, terreno), precio, tamaño, número de habitaciones, y otros criterios personalizados.
+- **Publicación de Propiedades:** Vendedores y agentes inmobiliarios tienen la capacidad de crear listados detallados, incluyendo descripciones, fotos de alta calidad, videos y documentos adicionales (como planos o certificados).
+- **Gestión de Contactos:** Un sistema de mensajería interna permite a los compradores comunicarse directamente con los vendedores o agentes sin salir de la plataforma.
+- **Pagos Seguros:** Integración con **Mercado Pago** para procesar transacciones como pagos de reservas, depósitos o comisiones de manera confiable y adaptada al mercado local.
+- **Panel de Administración:** Herramientas para administradores que incluyen moderación de listados, gestión de usuarios y monitoreo de transacciones.
+
+
+#### Propuesta de Valor Única
+InmoMarket combina una interfaz moderna y fácil de usar, construida con **Shadcn** y **Tailwind CSS**, que asegura una experiencia de usuario óptima tanto en dispositivos móviles como en escritorio. Gracias a **Supabase**, la plataforma ofrece un rendimiento rápido y escalable en autenticación, almacenamiento y manejo de datos. Además, la integración con **Mercado Pago** proporciona métodos de pago seguros y adaptados a las necesidades del mercado latinoamericano, lo que la hace ideal para usuarios en la región.
+
+
+#### Tecnologías Utilizadas
+- **Next.js:** Framework principal para el desarrollo del frontend y backend, permitiendo una experiencia dinámica y optimizada con renderizado del lado del servidor (SSR) y generación estática (SSG).
+- **Supabase:** Solución todo-en-uno para autenticación de usuarios, base de datos en tiempo real y almacenamiento de archivos (como imágenes y documentos de propiedades).
+- **Mercado Pago:** Pasarela de pagos para transacciones seguras y locales.
+- **Shadcn + Tailwind CSS:** Componentes UI reutilizables y un diseño responsivo basado en utility-first CSS.
+
+
+---
+
+
+---
+
+
+### Sección 2: Público Objetivo
+
+
+InmoMarket está diseñado para atender a un conjunto diverso de usuarios dentro del sector inmobiliario, con un enfoque especial en el mercado latinoamericano. A continuación, se describen los principales grupos de usuarios que se beneficiarán de la plataforma:
+
+
+#### Compradores
+- **Perfil:** Personas interesadas en adquirir o alquilar propiedades residenciales, comerciales o terrenos. Pueden ser compradores primerizos, inversionistas o familias en busca de un nuevo hogar.
+- **Necesidades:** Buscan una plataforma confiable donde puedan explorar propiedades con información detallada, fotos de alta calidad y opciones de contacto directo con vendedores o agentes. Valoran la seguridad en las transacciones y la facilidad para filtrar propiedades según sus preferencias (ubicación, precio, características específicas).
+
+
+#### Vendedores
+- **Perfil:** Propietarios de propiedades que desean vender o alquilar sus inmuebles de manera directa, sin intermediarios, o con la opción de trabajar con agentes.
+- **Necesidades:** Requieren una plataforma fácil de usar para publicar listados detallados, gestionar consultas de compradores y recibir pagos seguros. Buscan maximizar la visibilidad de sus propiedades y cerrar transacciones rápidamente.
+
+
+#### Agentes Inmobiliarios
+- **Perfil:** Profesionales del sector inmobiliario que gestionan múltiples propiedades en nombre de sus clientes. Pueden ser agentes independientes o trabajar para agencias.
+- **Necesidades:** Necesitan herramientas avanzadas para administrar varios listados, comunicarse eficientemente con compradores y vendedores, y acceder a análisis de rendimiento. Valoran la capacidad de promocionar su perfil profesional y construir una reputación dentro de la plataforma.
+
+
+#### Administradores
+- **Perfil:** Encargados de supervisar y moderar la plataforma para garantizar su correcto funcionamiento y cumplimiento de políticas.
+- **Necesidades:** Requieren un panel de control intuitivo para gestionar usuarios, moderar listados, resolver disputas y monitorear el rendimiento general de la plataforma. También necesitan herramientas para implementar políticas de seguridad y cumplir con regulaciones locales.
+
+
+#### Mercado Geográfico
+InmoMarket se enfoca inicialmente en el mercado latinoamericano, con especial atención en países como **México, Argentina y Colombia**, donde la demanda de plataformas inmobiliarias digitales está en crecimiento. La plataforma está diseñada para adaptarse a las particularidades de cada país, como monedas locales, métodos de pago preferidos (por ejemplo, transferencias bancarias o pagos en efectivo a través de puntos autorizados) y regulaciones específicas del sector inmobiliario.
+
+
+#### Nicho Específico
+- **Sector Inmobiliario Residencial y Comercial:** InmoMarket cubre tanto propiedades residenciales (casas, departamentos, terrenos) como comerciales (oficinas, locales), lo que amplía su alcance a diferentes tipos de usuarios.
+- **Usuarios sin Experiencia Técnica:** La plataforma está diseñada para ser accesible a usuarios con poca experiencia técnica, facilitando la publicación de listados y la navegación con una interfaz intuitiva y guías paso a paso.
+
+
+---
+
+
+
+
+---
+
+
+### Sección 3: Requerimientos Funcionales
+
+
+Los requerimientos funcionales de InmoMarket detallan las capacidades esenciales que la plataforma debe ofrecer para garantizar una experiencia de usuario eficiente, segura y adaptada al mercado inmobiliario. Estas funcionalidades se dividen según los roles de usuario y las necesidades específicas de la aplicación.
+
+
+#### Funcionalidades para Compradores
+- **Búsqueda Avanzada:** Los compradores podrán buscar propiedades utilizando filtros como ubicación (ciudad, barrio), rango de precios, tipo de propiedad (residencial, comercial, terreno), número de habitaciones, área en metros cuadrados, y estado (nueva, usada, en construcción).
+- **Visualización de Listados:** Cada propiedad contará con una página detallada que incluye descripciones, fotos de alta calidad, videos, planos (si están disponibles), y un mapa interactivo con la ubicación aproximada.
+- **Contacto Directo:** Opción para enviar mensajes a vendedores o agentes inmobiliarios directamente desde la plataforma, con un formulario predefinido para consultas específicas.
+- **Favoritos:** Los usuarios podrán guardar propiedades en una lista de favoritos para revisarlas más tarde.
+- **Pagos Seguros:** Integración con Mercado Pago para realizar reservas, depósitos o pagos iniciales de manera segura, con confirmación inmediata al vendedor.
+- **Notificaciones:** Alertas personalizables sobre nuevas propiedades que coincidan con los criterios de búsqueda del usuario.
+
+
+#### Funcionalidades para Vendedores
+- **Creación de Listados:** Interfaz intuitiva para subir propiedades, incluyendo campos obligatorios (título, descripción, precio, ubicación) y opcionales (fotos, videos, documentos como certificados de propiedad o escrituras).
+- **Gestión de Listados:** Panel donde los vendedores pueden ver, editar o eliminar sus propiedades publicadas, así como pausarlas temporalmente si no están disponibles.
+- **Comunicación:** Bandeja de entrada para responder consultas de compradores interesados, con opción de enviar respuestas predefinidas para agilizar la interacción.
+- **Confirmación de Pagos:** Notificaciones en tiempo real sobre pagos recibidos a través de Mercado Pago, con un historial de transacciones accesible.
+- **Estadísticas Básicas:** Información sobre el número de vistas y mensajes recibidos por cada listado.
+
+
+#### Funcionalidades para Agentes Inmobiliarios
+- **Gestión Multi-Propiedad:** Capacidad para administrar múltiples listados desde un solo panel, con herramientas para organizarlos por estado (en venta, en alquiler, vendido).
+- **Comunicación Avanzada:** Sistema de mensajería integrado con opciones para programar respuestas automáticas o enviar mensajes masivos a clientes potenciales.
+- **Reportes y Análisis:** Acceso a métricas como el rendimiento de los listados (vistas, contactos), tasas de conversión y tendencias del mercado local.
+- **Perfil Profesional:** Página pública para cada agente, mostrando su experiencia, propiedades gestionadas y reseñas de clientes (si se implementa un sistema de calificaciones).
+- **Integración con CRM:** Posibilidad de conectar la plataforma con herramientas externas de gestión de relaciones con clientes (CRM), si el agente lo requiere.
+
+
+#### Funcionalidades para Administradores
+- **Panel de Moderación:** Interfaz para revisar y aprobar listados antes de su publicación, asegurando que cumplan con las políticas de la plataforma (por ejemplo, sin contenido fraudulento o incompleto).
+- **Gestión de Usuarios:** Capacidad para suspender o eliminar cuentas que violen los términos de uso, así como para resolver disputas entre compradores y vendedores.
+- **Soporte al Usuario:** Sistema de tickets para atender consultas o problemas reportados por los usuarios, con seguimiento de estado.
+- **Monitoreo de Rendimiento:** Dashboard con métricas clave como número de usuarios activos, listados publicados, transacciones completadas y tiempo promedio de respuesta.
+- **Configuración de Políticas:** Opciones para definir reglas de la plataforma, como límites en la cantidad de fotos por listado o requisitos mínimos para la publicación.
+
+
+#### Funcionalidades Generales
+- **Autenticación Segura:** Registro y login mediante correo electrónico y contraseña, con opción de autenticación de dos factores (2FA) para mayor seguridad.
+- **Multilingüe:** Soporte inicial para español, con posibilidad de agregar otros idiomas (como portugués para Brasil) en el futuro.
+- **Responsive Design:** Interfaz adaptable a dispositivos móviles y de escritorio, desarrollada con **Shadcn** y **Tailwind CSS** para una experiencia visual moderna y fluida.
+- **Escalabilidad:** Uso de **Supabase** como base de datos para garantizar un rendimiento rápido y la capacidad de manejar un volumen creciente de usuarios y listados.
+- **Pasarela de Pago:** Integración completa con **Mercado Pago**, soportando múltiples monedas locales (MXN, ARS, COP, etc.) y métodos de pago (tarjetas, transferencias, efectivo en puntos autorizados).
+
+
+---
+
+
+Sección 4: Requerimientos No Funcionales
+
+
+Los requerimientos no funcionales de InmoMarket establecen las expectativas de calidad, rendimiento y seguridad que la plataforma debe cumplir para ofrecer una experiencia óptima a los usuarios y garantizar su éxito en el competitivo mercado inmobiliario latinoamericano. Estos aspectos no describen "qué" hace la aplicación, sino "cómo" lo hace, asegurando que sea rápida, segura, accesible y escalable.
+
+
+Rendimiento
+Tiempo de Carga: Las páginas deben cargar en menos de 2 segundos en conexiones estándar de internet (como 4G o banda ancha promedio en la región).
+Capacidad de Usuarios Concurrentes: La plataforma debe soportar al menos 5,000 usuarios simultáneos sin que el rendimiento se degrade, escalando automáticamente según la demanda.
+Búsqueda Eficiente: Las búsquedas de propiedades deben completarse en menos de 1 segundo, incluso con filtros avanzados y miles de listados.
+Procesamiento de Pagos: Las transacciones con Mercado Pago deben procesarse en tiempo real, con confirmaciones visibles en menos de 5 segundos.
+Seguridad
+Autenticación y Autorización: Usar autenticación segura con JWT y ofrecer autenticación de dos factores (2FA) para cuentas críticas (ej. administradores y agentes).
+Cifrado de Datos: Datos sensibles (información de pagos, documentos, mensajes) deben cifrarse en tránsito (HTTPS/TLS) y en reposo.
+Protección contra Ataques: Incluir defensas contra CSRF, XSS y SQL Injection, además de rate limiting en las APIs para evitar abusos.
+Gestión de Sesiones: Las sesiones expiran tras 30 minutos de inactividad y permiten cerrar sesión desde cualquier dispositivo.
+Usabilidad y Accesibilidad
+Diseño Responsivo: La interfaz debe adaptarse a todos los dispositivos (smartphones, tablets, desktops) usando Shadcn y Tailwind CSS para un diseño moderno.
+Accesibilidad (WCAG 2.1): Cumplir estándares de accesibilidad para usuarios con discapacidades (soporte para lectores de pantalla, navegación por teclado).
+Experiencia Intuitiva: Flujos simples para tareas clave (crear listados, buscar propiedades) con ayuda contextual y validaciones en tiempo real.
+Escalabilidad
+Arquitectura Modular: Usar Next.js para el frontend y backend, y Supabase para la base de datos, permitiendo añadir funcionalidades sin afectar el rendimiento.
+Crecimiento de Datos: Soportar al menos 100,000 propiedades activas y 1 millón de usuarios registrados, con optimización de la base de datos.
+Despliegue en la Nube: Alojar en Vercel con autoescalado según el tráfico.
+Cumplimiento Legal
+Protección de Datos: Cumplir con regulaciones como el GDPR (si aplica) y leyes locales de privacidad en América Latina.
+Consentimiento de Cookies: Mostrar un banner para aceptar/rechazar cookies no esenciales.
+Documentos Legales: Incluir términos de servicio y políticas de privacidad accesibles en el pie de página.
+Disponibilidad y Confiabilidad
+Tiempo de Actividad (Uptime): Garantizar un 99.9% de disponibilidad (máximo 8.76 horas de inactividad al año).
+Recuperación ante Desastres: Hacer backups diarios y restaurar la plataforma en menos de 4 horas tras un fallo.
+Monitoreo: Usar Vercel Analytics o Sentry para detectar errores en tiempo real.
+Mantenibilidad
+Código Limpio: Seguir principios SOLID y documentar el código para facilitar actualizaciones.
+Testing Automatizado: Pruebas unitarias y de integración con Jest y React Testing Library, cubriendo al menos el 80% del código.
+CI/CD: Ciclo de despliegue continuo para actualizaciones rápidas.
+Internacionalización
+Soporte Multilingüe: Iniciar en español, con capacidad para añadir otros idiomas (portugués, inglés).
+Monedas Locales: Adaptarse a monedas de cada país (MXN, ARS, etc.) con conversión automática.
+
+
+
+
+
+
+---
+
+
+### Sección 5: Arquitectura Técnica
+
+
+La arquitectura técnica de InmoMarket está diseñada para ser moderna, escalable y eficiente, utilizando un conjunto de tecnologías que optimizan tanto el desarrollo como el rendimiento de la aplicación. Esta sección describe las herramientas seleccionadas, su propósito en el proyecto y la justificación de su elección, además de ofrecer una visión general de cómo se estructuran e integran los componentes del sistema.
+
+
+#### Tecnologías y Herramientas
+
+
+- **Next.js (con App Router)**  
+  - **Propósito**: Framework principal para construir el frontend y backend, utilizando renderizado del lado del servidor (SSR) y generación estática (SSG).  
+  - **Justificación**: Next.js ofrece un rendimiento óptimo, mejora el SEO y simplifica la integración entre frontend y backend, lo que lo hace ideal para un marketplace como InmoMarket que necesita rapidez y facilidad de desarrollo.
+
+
+- **Supabase**  
+  - **Propósito**: Plataforma Backend-as-a-Service (BaaS) que proporciona autenticación, una base de datos PostgreSQL y almacenamiento de archivos.  
+  - **Justificación**: Reduce la complejidad del backend al ofrecer una solución todo-en-uno. Su compatibilidad con Next.js y el uso de Row-Level Security (RLS) lo hacen perfecto para gestionar roles de usuario y datos sensibles.
+
+
+- **Mercado Pago SDK**  
+  - **Propósito**: Integración para procesar pagos, incluyendo reservas y transacciones completas, con soporte para métodos de pago locales.  
+  - **Justificación**: Como líder en América Latina, Mercado Pago garantiza confianza y alta conversión entre los usuarios. Su SDK y soporte para webhooks facilitan la integración y automatización.
+
+
+- **Shadcn + Tailwind CSS**  
+  - **Propósito**: Shadcn aporta componentes UI accesibles y personalizables, mientras que Tailwind CSS permite un diseño rápido y responsivo.  
+  - **Justificación**: Esta combinación acelera el desarrollo de interfaces consistentes y adaptables, cumpliendo con estándares de accesibilidad y diseño moderno.
+
+
+- **TypeScript**  
+  - **Propósito**: Añade tipado estático a JavaScript para mejorar la detección de errores y la mantenibilidad.  
+  - **Justificación**: Esencial para proyectos grandes como InmoMarket, ya que reduce errores y facilita la colaboración entre desarrolladores.
+
+
+- **Vercel**  
+  - **Propósito**: Plataforma de despliegue y hosting con soporte para escalado automático y optimización.  
+  - **Justificación**: Optimizada para Next.js, Vercel simplifica los despliegues y ofrece características como previews, ideales para pruebas antes de producción.
+
+
+#### Estructura del Sistema
+
+
+InmoMarket utiliza una arquitectura **monolítica ligera**, con frontend y backend integrados en una sola aplicación Next.js. Esto simplifica el desarrollo y el mantenimiento, mientras que servicios externos como Supabase y Mercado Pago manejan tareas específicas. La estructura se organiza de la siguiente manera:
+
+
+- **Frontend**: Construido con componentes React en Next.js, utilizando App Router para gestionar rutas y layouts de forma modular.  
+- **Backend**: API Routes de Next.js actúan como endpoints RESTful, conectando con Supabase para datos y autenticación, y con Mercado Pago para pagos.  
+- **Base de Datos**: Supabase ofrece una base de datos PostgreSQL con RLS para controlar el acceso por roles.  
+- **Almacenamiento**: Supabase Storage gestiona archivos como imágenes de propiedades, con políticas de seguridad.  
+- **Autenticación**: Supabase Auth soporta login con email/contraseña y opciones sociales (Google, GitHub).
+
+
+#### Diagrama de Arquitectura
+
+
+Aquí tienes un esquema simplificado de cómo interactúan los componentes:
+
+
+```
+[Usuario] <--> [Frontend: Next.js] <--> [API Routes: Next.js]
+                                              |
+                                              v
+                                    [Supabase: Auth, DB, Storage]
+                                              |
+                                              v
+                                 [Mercado Pago: Pagos]
+```
+
+
+- El **Usuario** accede a la interfaz de Next.js.  
+- El **Frontend** renderiza páginas y llama a las API Routes según sea necesario.  
+- Las **API Routes** procesan lógica de negocio y se conectan con Supabase y Mercado Pago.  
+- **Supabase** maneja autenticación, datos y archivos.  
+- **Mercado Pago** procesa pagos y envía notificaciones vía webhooks.
+
+
+#### Justificación de la Arquitectura
+
+
+- **Simplicidad**: Usar Next.js para frontend y backend reduce la necesidad de gestionar múltiples servicios.  
+- **Escalabilidad**: Vercel y Supabase escalan automáticamente según la demanda.  
+- **Seguridad**: RLS en Supabase y autenticación JWT protegen los datos y accesos.  
+- **Mercado Local**: Mercado Pago se alinea con las preferencias de pago en América Latina.
+
+
+---
+
+
+
+
+
+
+---
+
+
+### Sección 6: Modelo de Datos
+
+
+El modelo de datos de InmoMarket está diseñado para ser flexible y escalable, soportando las funcionalidades esenciales de un marketplace inmobiliario. Utilizamos una base de datos relacional gestionada por **Supabase** (PostgreSQL), lo que asegura relaciones bien definidas entre las entidades y un acceso seguro a los datos.
+
+
+#### Entidades Principales
+
+
+1. **users**
+   - **Descripción**: Almacena la información de los usuarios (compradores, vendedores, agentes y administradores).
+   - **Campos**:
+     - `id`: UUID (clave primaria).
+     - `email`: String (único, requerido).
+     - `username`: String (único, requerido).
+     - `password`: String (hash, requerido).
+     - `role`: String ("buyer" | "seller" | "agent" | "admin").
+     - `bio`: Text (opcional).
+     - `avatar_url`: String (opcional).
+     - `created_at`: Timestamp.
+   - **Índices**:
+     - `email`: Único.
+     - `username`: Único.
+     - `role`: Para filtrar por rol.
+
+
+2. **properties**
+   - **Descripción**: Representa las propiedades inmobiliarias publicadas en la plataforma.
+   - **Campos**:
+     - `id`: UUID (clave primaria).
+     - `title`: String (requerido).
+     - `description`: Text (requerido).
+     - `price`: Decimal (requerido).
+     - `currency`: String (ej. "MXN", "ARS").
+     - `location`: String (ciudad, barrio).
+     - `type`: String ("casa", "departamento", "terreno", etc.).
+     - `status`: String ("active" | "sold" | "rented").
+     - `author_id`: UUID (clave foránea a `users.id`).
+     - `created_at`: Timestamp.
+   - **Índices**:
+     - `author_id`: Para consultas por vendedor.
+     - `type`: Para filtrar por tipo.
+     - `price`: Para ordenar por precio.
+
+
+3. **property_details**
+   - **Descripción**: Contiene detalles adicionales de las propiedades (ej. número de habitaciones, baños).
+   - **Campos**:
+     - `id`: UUID (clave primaria).
+     - `property_id`: UUID (clave foránea a `properties.id`).
+     - `details`: JSONB (ej. {"habitaciones": 3, "baños": 2}).
+   - **Índices**:
+     - `property_id`: Para consultas por propiedad.
+
+
+4. **transactions**
+   - **Descripción**: Registra las transacciones relacionadas con las propiedades (reservas, pagos).
+   - **Campos**:
+     - `id`: UUID (clave primaria).
+     - `property_id`: UUID (clave foránea a `properties.id`).
+     - `buyer_id`: UUID (clave foránea a `users.id`).
+     - `amount`: Decimal.
+     - `currency`: String.
+     - `status`: String ("pending" | "completed" | "failed").
+     - `mercado_pago_id`: String (ID de transacción en Mercado Pago).
+     - `created_at`: Timestamp.
+   - **Índices**:
+     - `property_id`: Para agrupar por propiedad.
+     - `buyer_id`: Para historial de compras.
+
+
+5. **messages**
+   - **Descripción**: Almacena las conversaciones entre usuarios.
+   - **Campos**:
+     - `id`: UUID (clave primaria).
+     - `sender_id`: UUID (clave foránea a `users.id`).
+     - `receiver_id`: UUID (clave foránea a `users.id`).
+     - `content`: Text (requerido).
+     - `read`: Boolean (default: false).
+     - `created_at`: Timestamp.
+   - **Índices**:
+     - `sender_id`: Para mensajes enviados.
+     - `receiver_id`: Para mensajes recibidos.
+
+
+#### Relaciones
+- **users** ↔ **properties**: Un usuario puede crear múltiples propiedades (1:N).
+- **properties** ↔ **property_details**: Una propiedad tiene un conjunto de detalles (1:1).
+- **properties** ↔ **transactions**: Una propiedad puede tener varias transacciones (1:N).
+- **users** ↔ **messages**: Un usuario puede enviar y recibir múltiples mensajes (N:N).
+
+
+#### Ejemplo de Consulta
+Para buscar propiedades con filtros:
+```sql
+SELECT p.*, d.details
+FROM properties p
+JOIN property_details d ON p.id = d.property_id
+WHERE p.type = 'casa' AND p.price BETWEEN 100000 AND 200000;
+```
+
+
+#### Políticas de Acceso (RLS)
+- **users**: Solo el propietario puede editar su perfil.
+- **properties**: Solo el autor puede editar; todos ven las propiedades con `status = 'active'`.
+- **transactions**: Solo el comprador y administradores tienen acceso.
+- **messages**: Solo el remitente y el destinatario pueden leerlos.
+
+
+---
+
+
+
+
+---
+
+
+### Sección 7: Historias de Usuario
+
+
+Las historias de usuario detallan las funcionalidades de InmoMarket desde la perspectiva de los usuarios finales. Cada historia incluye un rol, una acción y un objetivo, acompañado de criterios de éxito que aseguran que la funcionalidad cumple con las expectativas. A continuación, presento las historias prioritarias organizadas por los roles clave: compradores, vendedores, agentes inmobiliarios y administradores.
+
+
+#### Historias para Compradores
+
+
+**HU1: Buscar Propiedades**  
+**Como** comprador, **quiero** buscar propiedades usando filtros **para** encontrar rápidamente lo que me interesa.  
+**Criterios de Éxito**:  
+- Barra de búsqueda con autocompletado.  
+- Filtros por ubicación, precio, tipo de propiedad, etc.  
+- Resultados paginados y ordenables por relevancia o precio.
+
+
+**HU2: Ver Detalles de una Propiedad**  
+**Como** comprador, **quiero** ver información detallada de una propiedad **para** decidir si me interesa.  
+**Criterios de Éxito**:  
+- Página con título, descripción, fotos, videos y mapa interactivo.  
+- Opción visible para contactar al vendedor o reservar la propiedad.
+
+
+**HU3: Contactar al Vendedor**  
+**Como** comprador, **quiero** enviar un mensaje al vendedor **para** hacer preguntas o negociar.  
+**Criterios de Éxito**:  
+- Formulario de contacto integrado en la página de la propiedad.  
+- Notificación al vendedor por email y en la plataforma.
+
+
+**HU4: Realizar una Reserva**  
+**Como** comprador, **quiero** reservar una propiedad pagando un depósito **para** asegurar mi interés.  
+**Criterios de Éxito**:  
+- Proceso de pago seguro integrado con Mercado Pago.  
+- Confirmación de la reserva por email y en el perfil del usuario.
+
+
+#### Historias para Vendedores
+
+
+**HU5: Publicar una Propiedad**  
+**Como** vendedor, **quiero** crear un listado de mi propiedad **para** atraer compradores.  
+**Criterios de Éxito**:  
+- Formulario con campos obligatorios (título, precio, ubicación) y opcionales (fotos, videos).  
+- Subida de archivos multimedia con vista previa.  
+- Previsualización del listado antes de publicarlo.
+
+
+**HU6: Gestionar Mis Listados**  
+**Como** vendedor, **quiero** ver y editar mis propiedades publicadas **para** mantener la información actualizada.  
+**Criterios de Éxito**:  
+- Dashboard con lista de propiedades publicadas.  
+- Opciones para editar, pausar o eliminar cada listado.
+
+
+**HU7: Responder a Consultas**  
+**Como** vendedor, **quiero** recibir y responder mensajes de compradores **para** cerrar ventas.  
+**Criterios de Éxito**:  
+- Bandeja de entrada con notificaciones en tiempo real.  
+- Historial de conversaciones accesible.
+
+
+#### Historias para Agentes Inmobiliarios
+
+
+**HU8: Gestionar Múltiples Propiedades**  
+**Como** agente, **quiero** administrar varias propiedades de mis clientes **para** ofrecer un servicio completo.  
+**Criterios de Éxito**:  
+- Panel de control para organizar propiedades por estado (publicadas, pausadas, vendidas).  
+- Herramientas para actualizar información de varios listados simultáneamente.
+
+
+**HU9: Analizar Rendimiento**  
+**Como** agente, **quiero** ver estadísticas de mis listados **para** mejorar mi estrategia.  
+**Criterios de Éxito**:  
+- Reportes con métricas como vistas, contactos y tasas de conversión.  
+- Comparativas con el rendimiento promedio del mercado.
+
+
+#### Historias para Administradores
+
+
+**HU10: Moderar Listados**  
+**Como** administrador, **quiero** revisar y aprobar propiedades **para** asegurar la calidad del contenido.  
+**Criterios de Éxito**:  
+- Cola de listados pendientes de aprobación.  
+- Opciones para aprobar o rechazar con comentarios visibles para el vendedor.
+
+
+**HU11: Gestionar Usuarios**  
+**Como** administrador, **quiero** suspender o eliminar cuentas **para** mantener la seguridad de la plataforma.  
+**Criterios de Éxito**:  
+- Lista de usuarios con filtros por estado o actividad.  
+- Acciones para suspender o eliminar cuentas con registro de motivos.
+
+
+---
+
+
+
+
+---
+
+
+### Sección 8: Plan de Desarrollo
+
+
+El **Plan de Desarrollo** de InmoMarket describe las etapas clave para construir la plataforma, desde la configuración inicial hasta el despliegue en producción. Este plan asegura que el desarrollo sea eficiente, organizado y alineado con los requerimientos funcionales y no funcionales definidos en secciones anteriores.
+
+
+#### Fases del Proyecto
+
+
+El desarrollo de InmoMarket se organizará en cinco fases principales:
+
+
+##### Fase 1: Configuración Inicial y Autenticación
+- **Duración Estimada**: 1 semana  
+- **Objetivo**: Establecer la base técnica y la autenticación de usuarios.  
+- **Tareas**:  
+  - Inicializar el proyecto con Next.js y TypeScript.  
+  - Configurar Supabase para autenticación, base de datos y almacenamiento.  
+  - Implementar registro e inicio de sesión (email/contraseña y opciones sociales como Google y GitHub).  
+  - Integrar Mercado Pago para pagos.  
+- **Hitos**: Proyecto base configurado y autenticación funcional.
+
+
+##### Fase 2: Desarrollo de Listados de Propiedades
+- **Duración Estimada**: 2 semanas  
+- **Objetivo**: Crear la funcionalidad para gestionar listados de propiedades.  
+- **Tareas**:  
+  - Diseñar la interfaz para crear y editar listados.  
+  - Configurar la base de datos para propiedades.  
+  - Implementar búsqueda avanzada y filtros.  
+- **Hitos**: Listados y búsqueda operativos.
+
+
+##### Fase 3: Integración de Pagos y Mensajería
+- **Duración Estimada**: 2 semanas  
+- **Objetivo**: Añadir pagos y comunicación entre usuarios.  
+- **Tareas**:  
+  - Integrar Mercado Pago para reservas y depósitos.  
+  - Implementar mensajería interna con notificaciones en tiempo real (usando Supabase Realtime).  
+- **Hitos**: Pagos y mensajería funcionales.
+
+
+##### Fase 4: Panel de Administración y Moderación
+- **Duración Estimada**: 1 semana  
+- **Objetivo**: Desarrollar herramientas para administradores.  
+- **Tareas**:  
+  - Crear un panel para gestionar usuarios y listados.  
+  - Implementar moderación de listados (aprobación/rechazo).  
+- **Hitos**: Panel y moderación operativos.
+
+
+##### Fase 5: Pruebas y Despliegue
+- **Duración Estimada**: 2 semanas  
+- **Objetivo**: Validar y lanzar la aplicación.  
+- **Tareas**:  
+  - Realizar pruebas unitarias, de integración y end-to-end.  
+  - Ejecutar pruebas de rendimiento y seguridad.  
+  - Desplegar en Vercel.  
+- **Hitos**: Aplicación en producción.
+
+
+#### Cronograma Estimado
+
+
+El desarrollo total tomará aproximadamente **8 semanas**:
+
+
+| Fase                             | Duración  | Fecha Inicio | Fecha Fin |
+|----------------------------------|-----------|--------------|-----------|
+| Configuración Inicial            | 1 semana  | Semana 1     | Semana 1  |
+| Listados de Propiedades          | 2 semanas | Semana 2     | Semana 3  |
+| Pagos y Mensajería               | 2 semanas | Semana 4     | Semana 5  |
+| Administración y Moderación      | 1 semana  | Semana 6     | Semana 6  |
+| Pruebas y Despliegue             | 2 semanas | Semana 7     | Semana 8  |
+
+
+**Nota**: Este cronograma puede ajustarse según el progreso real.
+
+
+#### Recursos Necesarios
+
+
+- **Equipo**:  
+  - 1-2 desarrolladores full-stack (Next.js, TypeScript, Supabase, Mercado Pago).  
+  - 1 diseñador UX/UI (opcional).  
+- **Herramientas**:  
+  - GitHub (control de versiones).  
+  - Vercel (despliegue).  
+  - Figma (prototipos, si aplica).  
+- **Tecnologías**: Next.js, Supabase, TypeScript, Shadcn, Tailwind CSS, Mercado Pago SDK.
+
+
+#### Riesgos y Mitigaciones
+
+
+| Riesgo                              | Impacto | Mitigación                                      |
+|-------------------------------------|---------|-------------------------------------------------|
+| Retrasos en Supabase                | Alto    | Probar configuración previamente.              |
+| Problemas de rendimiento            | Medio   | Optimizar consultas y usar índices.            |
+| Errores en Mercado Pago             | Alto    | Seguir documentación oficial y probar temprano.|
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+## Documentación de APIs de InmoMarket
+
+
+### Introducción
+La API de **InmoMarket** permite interactuar con la plataforma mediante endpoints RESTful. Esta documentación detalla cómo utilizar los servicios para gestionar usuarios, propiedades, transacciones y mensajes. Los endpoints protegidos requieren autenticación mediante un token JWT, generado al iniciar sesión a través de Supabase.
+
+
+---
+
+
+### Autenticación
+Para acceder a los endpoints protegidos, es necesario incluir un token JWT en el encabezado de las solicitudes.
+
+
+- **Método**: `POST`
+- **Endpoint**: `/api/auth/login`
+- **Parámetros**:
+  - Cuerpo de la solicitud:
+    ```json
+    {
+      "email": "string",
+      "password": "string"
+    }
+    ```
+- **Respuesta Exitosa** (200 OK):
+  ```json
+  {
+    "access_token": "jwt",
+    "user": {
+      "id": "uuid",
+      "email": "string",
+      "role": "string" // "comprador", "vendedor", "agente", "admin"
+    }
+  }
+  ```
+- **Uso del token**: Incluye el token en el encabezado `Authorization: Bearer <token>` en todas las solicitudes autenticadas.
+
+
+---
+
+
+### Endpoints Principales
+
+
+#### 1. Usuarios
+
+
+##### 1.1 Obtener Perfil de Usuario
+- **Método**: `GET`
+- **Endpoint**: `/api/users/:id`
+- **Descripción**: Devuelve los detalles de un usuario específico.
+- **Parámetros**:
+  - `id` (path): ID del usuario (UUID).
+- **Autenticación**: Requiere token JWT.
+- **Respuesta Exitosa** (200 OK):
+  ```json
+  {
+    "id": "uuid",
+    "username": "string",
+    "email": "string",
+    "role": "string",
+    "bio": "string",
+    "avatar_url": "string",
+    "created_at": "timestamp"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  GET /api/users/123e4567-e89b-12d3-a456-426614174000
+  Authorization: Bearer <token>
+  ```
+
+
+##### 1.2 Actualizar Perfil de Usuario
+- **Método**: `PUT`
+- **Endpoint**: `/api/users/:id`
+- **Descripción**: Actualiza los datos del perfil del usuario autenticado.
+- **Parámetros**:
+  - `id` (path): ID del usuario (UUID).
+  - Cuerpo de la solicitud:
+    ```json
+    {
+      "username": "string",
+      "bio": "string",
+      "avatar_url": "string"
+    }
+    ```
+- **Autenticación**: Requiere token JWT y que el usuario sea el propietario del perfil.
+- **Respuesta Exitosa** (200 OK):
+  ```json
+  {
+    "message": "Perfil actualizado exitosamente"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  PUT /api/users/123e4567-e89b-12d3-a456-426614174000
+  Authorization: Bearer <token>
+  Content-Type: application/json
+  {
+    "username": "nuevo_usuario",
+    "bio": "Agente inmobiliario con experiencia",
+    "avatar_url": "https://example.com/avatar.jpg"
+  }
+  ```
+
+
+---
+
+
+#### 2. Propiedades
+
+
+##### 2.1 Crear una Propiedad
+- **Método**: `POST`
+- **Endpoint**: `/api/properties`
+- **Descripción**: Crea un nuevo listado de propiedad en la plataforma.
+- **Parámetros**:
+  - Cuerpo de la solicitud:
+    ```json
+    {
+      "title": "string",
+      "description": "string",
+      "price": "number",
+      "location": "string",
+      "type": "string", // "casa", "departamento", "terreno"
+      "details": { "habitaciones": "number", "baños": "number" }
+    }
+    ```
+- **Autenticación**: Requiere token JWT y rol de "vendedor" o "agente".
+- **Respuesta Exitosa** (201 Created):
+  ```json
+  {
+    "id": "uuid",
+    "title": "string",
+    "description": "string",
+    "price": "number",
+    "location": "string",
+    "type": "string",
+    "details": { "habitaciones": "number", "baños": "number" },
+    "author_id": "uuid",
+    "created_at": "timestamp"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  POST /api/properties
+  Authorization: Bearer <token>
+  Content-Type: application/json
+  {
+    "title": "Casa en venta",
+    "description": "Amplia casa con jardín",
+    "price": 250000,
+    "location": "Ciudad de México",
+    "type": "casa",
+    "details": { "habitaciones": 3, "baños": 2 }
+  }
+  ```
+
+
+##### 2.2 Obtener Lista de Propiedades
+- **Método**: `GET`
+- **Endpoint**: `/api/properties`
+- **Descripción**: Devuelve una lista paginada de propiedades con filtros opcionales.
+- **Parámetros**:
+  - `page` (query): Número de página (default: 1).
+  - `limit` (query): Propiedades por página (default: 10).
+  - `search` (query): Término de búsqueda (opcional).
+  - `type` (query): Tipo de propiedad (opcional).
+  - `price_min` (query): Precio mínimo (opcional).
+  - `price_max` (query): Precio máximo (opcional).
+- **Autenticación**: No requiere autenticación.
+- **Respuesta Exitosa** (200 OK):
+  ```json
+  {
+    "properties": [
+      {
+        "id": "uuid",
+        "title": "string",
+        "description": "string",
+        "price": "number",
+        "location": "string",
+        "type": "string",
+        "author": {
+          "id": "uuid",
+          "username": "string"
+        },
+        "created_at": "timestamp"
+      }
+    ],
+    "total": "integer",
+    "page": "integer",
+    "limit": "integer"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  GET /api/properties?page=1&limit=10&type=casa&price_max=300000
+  ```
+
+
+---
+
+
+#### 3. Transacciones
+
+
+##### 3.1 Crear una Transacción
+- **Método**: `POST`
+- **Endpoint**: `/api/transactions`
+- **Descripción**: Inicia un proceso de pago para una propiedad usando Mercado Pago.
+- **Parámetros**:
+  - Cuerpo de la solicitud:
+    ```json
+    {
+      "property_id": "uuid",
+      "payment_method": "string" // "credit_card", "transfer"
+    }
+    ```
+- **Autenticación**: Requiere token JWT y rol de "comprador".
+- **Respuesta Exitosa** (201 Created):
+  ```json
+  {
+    "id": "uuid",
+    "status": "pending",
+    "mercado_pago_url": "string" // URL para completar el pago
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  POST /api/transactions
+  Authorization: Bearer <token>
+  Content-Type: application/json
+  {
+    "property_id": "123e4567-e89b-12d3-a456-426614174000",
+    "payment_method": "credit_card"
+  }
+  ```
+
+
+##### 3.2 Obtener Estado de Transacción
+- **Método**: `GET`
+- **Endpoint**: `/api/transactions/:id`
+- **Descripción**: Devuelve el estado de una transacción específica.
+- **Parámetros**:
+  - `id` (path): ID de la transacción (UUID).
+- **Autenticación**: Requiere token JWT.
+- **Respuesta Exitosa** (200 OK):
+  ```json
+  {
+    "id": "uuid",
+    "status": "string", // "pending", "completed", "failed"
+    "amount": "number",
+    "currency": "string",
+    "created_at": "timestamp"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  GET /api/transactions/987fcdeb-12d3-45e6-7890-426614174000
+  Authorization: Bearer <token>
+  ```
+
+
+---
+
+
+#### 4. Mensajes
+
+
+##### 4.1 Enviar un Mensaje
+- **Método**: `POST`
+- **Endpoint**: `/api/messages`
+- **Descripción**: Envía un mensaje a otro usuario de la plataforma.
+- **Parámetros**:
+  - Cuerpo de la solicitud:
+    ```json
+    {
+      "receiver_id": "uuid",
+      "content": "string"
+    }
+    ```
+- **Autenticación**: Requiere token JWT.
+- **Respuesta Exitosa** (201 Created):
+  ```json
+  {
+    "id": "uuid",
+    "sender_id": "uuid",
+    "receiver_id": "uuid",
+    "content": "string",
+    "read": false,
+    "created_at": "timestamp"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  POST /api/messages
+  Authorization: Bearer <token>
+  Content-Type: application/json
+  {
+    "receiver_id": "123e4567-e89b-12d3-a456-426614174000",
+    "content": "Estoy interesado en tu propiedad"
+  }
+  ```
+
+
+##### 4.2 Obtener Mensajes de un Usuario
+- **Método**: `GET`
+- **Endpoint**: `/api/messages`
+- **Descripción**: Devuelve los mensajes enviados y recibidos por el usuario autenticado.
+- **Parámetros**:
+  - `page` (query): Número de página (default: 1).
+  - `limit` (query): Mensajes por página (default: 10).
+- **Autenticación**: Requiere token JWT.
+- **Respuesta Exitosa** (200 OK):
+  ```json
+  {
+    "messages": [
+      {
+        "id": "uuid",
+        "sender_id": "uuid",
+        "receiver_id": "uuid",
+        "content": "string",
+        "read": boolean,
+        "created_at": "timestamp"
+      }
+    ],
+    "total": "integer",
+    "page": "integer",
+    "limit": "integer"
+  }
+  ```
+- **Ejemplo de solicitud**:
+  ```bash
+  GET /api/messages?page=1&limit=10
+  Authorization: Bearer <token>
+  ```
+
+
+---
+
+
+### Manejo de Errores
+La API utiliza códigos de estado HTTP para indicar el resultado de las solicitudes, acompañados de mensajes descriptivos:
+
+
+- **400 Bad Request**:
+  ```json
+  {
+    "error": "Parámetro 'title' es requerido"
+  }
+  ```
+- **401 Unauthorized**:
+  ```json
+  {
+    "error": "Token inválido o ausente"
+  }
+  ```
+- **403 Forbidden**:
+  ```json
+  {
+    "error": "No tienes permiso para realizar esta acción"
+  }
+  ```
+- **404 Not Found**:
+  ```json
+  {
+    "error": "Propiedad no encontrada"
+  }
+  ```
+- **500 Internal Server Error**:
+  ```json
+  {
+    "error": "Ocurrió un error interno. Contacta al soporte."
+  }
+  ```
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+### Sección 9: Estrategia de Pruebas
+
+
+La **Estrategia de Pruebas** de InmoMarket establece un enfoque sistemático para validar la calidad de la aplicación, desde sus componentes individuales hasta los flujos completos de usuario. Este plan está diseñado para garantizar que el frontend (desarrollado en Next.js), el backend (basado en API Routes de Next.js) y las integraciones con servicios como Supabase y Mercado Pago operen sin problemas, cumpliendo con los estándares de funcionalidad, rendimiento y seguridad.
+
+
+#### Objetivos
+- Verificar que todas las funcionalidades clave (búsqueda de propiedades, procesamiento de pagos, mensajería) funcionen correctamente.
+- Asegurar que la aplicación sea escalable y responda bien bajo carga.
+- Identificar y mitigar riesgos de seguridad para proteger datos y transacciones.
+- Entregar una experiencia de usuario confiable y de alta calidad.
+
+
+#### Tipos de Pruebas y Herramientas
+A continuación, se describen los tipos de pruebas que se realizarán y las herramientas seleccionadas para cada una:
+
+
+| **Tipo de Prueba**         | **Descripción**                                                                 | **Herramienta(s)**            |
+|----------------------------|---------------------------------------------------------------------------------|-------------------------------|
+| **Pruebas Unitarias**      | Validan componentes y funciones individuales, como la lógica de negocio o la UI. | Jest, React Testing Library   |
+| **Pruebas de Integración** | Comprueban la interacción entre módulos, como las API Routes y Supabase.         | Jest, mocks de Supabase       |
+| **Pruebas End-to-End (E2E)** | Simulan flujos completos de usuario, como registro o compra de una propiedad.    | Cypress                       |
+| **Pruebas de Rendimiento** | Evalúan tiempos de carga y capacidad bajo carga (ej. 1,000 usuarios simultáneos).| Lighthouse, k6                |
+| **Pruebas de Seguridad**   | Detectan vulnerabilidades como inyecciones SQL o ataques XSS.                    | OWASP ZAP, revisiones manuales|
+
+
+#### Criterios de Éxito
+Para considerar que las pruebas han sido exitosas, se deben cumplir los siguientes criterios:
+- **Pruebas Unitarias**: Cobertura mínima del 80% del código.
+- **Pruebas de Integración**: Todas las conexiones entre módulos deben funcionar sin errores.
+- **Pruebas E2E**: Los flujos principales de usuario deben completarse sin fallos.
+- **Pruebas de Rendimiento**: La app debe cargar en menos de 2 segundos y soportar al menos 1,000 usuarios concurrentes.
+- **Pruebas de Seguridad**: No deben encontrarse vulnerabilidades críticas.
+
+
+#### Gestión de Defectos
+El manejo de errores seguirá este proceso:
+- **Reporte**: Los defectos se registrarán en GitHub Issues con etiquetas de severidad (crítico, alto, medio, bajo).
+- **Priorización**: Los errores críticos bloquean el despliegue; los menores se resuelven en sprints futuros.
+- **Resolución**: Se asignarán a los desarrolladores según el área afectada.
+
+
+#### Automatización y CI/CD
+- **Integración Continua**: Las pruebas unitarias y de integración se ejecutarán automáticamente en cada pull request usando GitHub Actions.
+- **Despliegue**: Solo se permitirá el despliegue si todas las pruebas pasan exitosamente.
+
+
+#### Cronograma de Pruebas
+- **Pruebas Unitarias**: Durante el desarrollo de cada funcionalidad.
+- **Pruebas de Integración**: Al finalizar la integración de cada módulo.
+- **Pruebas E2E**: Antes de lanzar el MVP.
+- **Pruebas de Rendimiento y Seguridad**: En la fase final, previo al lanzamiento oficial.
+
+
+#### Ejemplos Prácticos de Pruebas
+Aquí tienes algunos ejemplos concretos de pruebas para validar las funcionalidades de InmoMarket:
+
+
+- **Prueba Unitaria**:  
+  - **Caso**: Validar el cálculo de comisiones por transacción.  
+  - **Descripción**: Dado un monto, la función debe calcular correctamente la comisión según el porcentaje definido.
+
+
+- **Prueba de Integración**:  
+  - **Caso**: Confirmar que un pago exitoso en Mercado Pago se registra en Supabase.  
+  - **Descripción**: Simular un pago y verificar que los datos se almacenen en la tabla correspondiente.
+
+
+- **Prueba E2E**:  
+  - **Caso**: Completar el flujo de un comprador: registro, búsqueda, contacto y pago.  
+  - **Descripción**: Asegurar que todo el proceso se realice sin errores.
+
+
+- **Prueba de Rendimiento**:  
+  - **Caso**: Medir el tiempo de carga de la lista de propiedades con 1,000 usuarios concurrentes.  
+  - **Descripción**: Garantizar que la lista cargue en menos de 2 segundos bajo carga.
+
+
+- **Prueba de Seguridad**:  
+  - **Caso**: Probar inyecciones SQL en el campo de búsqueda.  
+  - **Descripción**: Verificar que las entradas estén sanitizadas y no permitan ataques.
+
+
+---
+
+
+
+
+---
+
+
+## Sección 10: Guía de Mejores Prácticas
+
+
+La **Guía de Mejores Prácticas** para InmoMarket ofrece un conjunto de recomendaciones y estándares que el equipo de desarrollo debe seguir para garantizar que el código sea limpio, escalable y fácil de mantener. Estas prácticas están diseñadas para abordar los desafíos específicos de un marketplace inmobiliario, como la gestión de listados dinámicos, integraciones de pagos y notificaciones en tiempo real, asegurando que la plataforma sea robusta, eficiente y preparada para crecer.
+
+
+### Objetivos
+- Garantizar la calidad y mantenibilidad del código a largo plazo.
+- Optimizar el rendimiento y la escalabilidad para soportar un volumen creciente de usuarios y listados.
+- Facilitar la colaboración entre desarrolladores mediante estándares consistentes.
+- Integrar prácticas de seguridad y accesibilidad desde las primeras etapas del desarrollo.
+
+
+---
+
+
+### 1. Principios SOLID
+Los principios SOLID son fundamentales para escribir código modular y sostenible. Aquí te los explico con ejemplos aplicados a InmoMarket:
+
+
+#### **Single Responsibility Principle (Principio de Responsabilidad Única)**  
+- **Definición**: Cada clase o función debe tener una sola responsabilidad.  
+- **Ejemplo**: Separar la lógica de autenticación de la visualización de propiedades.  
+```tsx
+// Mal: Un componente hace demasiado
+function PropertyPage() {
+  const user = useAuth(); // Autenticación
+  const property = useProperty(); // Datos
+  return <div>{property.title}</div>; // Renderizado
+}
+
+
+// Bien: Responsabilidades separadas
+function PropertyPage({ property }) {
+  return <div>{property.title}</div>;
+}
+
+
+function AuthWrapper() {
+  const user = useAuth();
+  const property = useProperty();
+  return <PropertyPage property={property} />;
+}
+```
+
+
+#### **Open/Closed Principle (Principio Abierto/Cerrado)**  
+- **Definición**: Las entidades deben estar abiertas a extensión pero cerradas a modificación.  
+- **Ejemplo**: Añadir nuevos métodos de pago (como Mercado Pago) sin cambiar el código existente.  
+```tsx
+class PaymentProcessor {
+  constructor(type) {
+    this.type = type;
+  }
+  process(amount) {
+    throw new Error("Método no implementado");
+  }
+}
+
+
+class MercadoPagoProcessor extends PaymentProcessor {
+  process(amount) {
+    return mercadoPago.charge(amount);
+  }
+}
+```
+
+
+#### **Liskov Substitution Principle (Principio de Sustitución de Liskov)**  
+- **Definición**: Las subclases deben ser intercambiables por sus clases base sin alterar el comportamiento.  
+- **Ejemplo**: Clientes de notificaciones intercambiables.  
+```tsx
+interface NotificationClient {
+  send(to: string, message: string): Promise<void>;
+}
+
+
+class EmailClient implements NotificationClient {
+  async send(to, message) {
+    await resend.sendEmail(to, message);
+  }
+}
+```
+
+
+#### **Interface Segregation Principle (Principio de Segregación de Interfaces)**  
+- **Definición**: No obligar a los clientes a depender de interfaces que no usan.  
+- **Ejemplo**: Interfaces separadas para Supabase.  
+```tsx
+interface AuthClient {
+  signIn(email: string, password: string): Promise<void>;
+}
+
+
+interface DataClient {
+  fetchProperties(): Promise<Property[]>;
+}
+
+
+class SupabaseAuth implements AuthClient {
+  async signIn(email, password) {
+    await supabase.auth.signInWithPassword({ email, password });
+  }
+}
+```
+
+
+#### **Dependency Inversion Principle (Principio de Inversión de Dependencias)**  
+- **Definición**: Depender de abstracciones, no de implementaciones concretas.  
+- **Ejemplo**: Inyección de servicios de pago.  
+```tsx
+class PaymentService {
+  constructor(private processor: PaymentProcessor) {}
+
+
+  async pay(amount: number) {
+    await this.processor.process(amount);
+  }
+}
+
+
+const mercadoPagoProcessor = new MercadoPagoProcessor();
+const paymentService = new PaymentService(mercadoPagoProcessor);
+```
+
+
+---
+
+
+### 2. Clean Code
+El código limpio mejora la legibilidad y el mantenimiento. Estas son las prácticas clave:
+
+
+#### **Nombres Descriptivos**  
+- **Práctica**: Usa nombres que indiquen claramente la intención.  
+- **Ejemplo**:  
+```tsx
+// Mal
+const x = await fetch("/api/properties");
+
+
+// Bien
+const properties = await fetchProperties("/api/properties");
+```
+
+
+#### **Funciones Pequeñas y con un Solo Propósito**  
+- **Práctica**: Mantén las funciones cortas y enfocadas en una sola tarea.  
+- **Ejemplo**:  
+```tsx
+// Mal
+async function handleRequest(req, res) {
+  const data = await supabase.from("transactions").select("*");
+  res.status(200).json(data);
+}
+
+
+// Bien
+async function getTransactions() {
+  return await supabase.from("transactions").select("*");
+}
+
+
+async function handleRequest(req, res) {
+  const transactions = await getTransactions();
+  res.status(200).json(transactions);
+}
+```
+
+
+#### **Manejo de Errores**  
+- **Práctica**: Gestiona errores de forma explícita y clara.  
+- **Ejemplo**:  
+```tsx
+async function createProperty(data) {
+  try {
+    const { data: property, error } = await supabase.from("properties").insert(data);
+    if (error) throw new Error(error.message);
+    return property;
+  } catch (error) {
+    throw new Error(`Error al crear propiedad: ${error.message}`);
+  }
+}
+```
+
+
+#### **Comentarios Útiles**  
+- **Práctica**: Comenta el "por qué", no el "qué".  
+- **Ejemplo**:  
+```tsx
+// Mal: Redundante
+// Obtiene propiedades
+const properties = await fetchProperties();
+
+
+// Bien: Explica la intención
+// Usamos un caché para reducir consultas a Supabase
+const properties = await cachedFetchProperties();
+```
+
+
+---
+
+
+### 3. Patrones de Diseño
+Los patrones de diseño ayudan a resolver problemas comunes. Aquí algunos aplicables a InmoMarket:
+
+
+#### **Singleton**  
+- **Definición**: Garantiza una única instancia de un recurso.  
+- **Ejemplo**: Conexión a Supabase.  
+```tsx
+class SupabaseSingleton {
+  private static instance: SupabaseClient;
+
+
+  private constructor() {}
+
+
+  static getInstance() {
+    if (!SupabaseSingleton.instance) {
+      SupabaseSingleton.instance = createClient(supabaseUrl, supabaseKey);
+    }
+    return SupabaseSingleton.instance;
+  }
+}
+```
+
+
+#### **Factory**  
+- **Definición**: Centraliza la creación de objetos.  
+- **Ejemplo**: Procesadores de pago.  
+```tsx
+class PaymentFactory {
+  static createProcessor(type: string) {
+    if (type === "mercadopago") return new MercadoPagoProcessor();
+    throw new Error("Procesador no soportado");
+  }
+}
+
+
+const processor = PaymentFactory.createProcessor("mercadopago");
+```
+
+
+#### **Repository**  
+- **Definición**: Abstrae el acceso a datos.  
+- **Ejemplo**: Consultas a propiedades.  
+```tsx
+interface PropertyRepository {
+  getProperties(): Promise<Property[]>;
+}
+
+
+class SupabasePropertyRepository implements PropertyRepository {
+  async getProperties() {
+    const { data } = await supabase.from("properties").select("*");
+    return data;
+  }
+}
+```
+
+
+---
+
+
+### 4. Prácticas Específicas para Marketplaces
+Dado que InmoMarket es un marketplace inmobiliario, estas prácticas adicionales son esenciales:
+
+
+#### **Gestión de Concurrencia**  
+- **Práctica**: Usa bloqueos optimistas para manejar transacciones concurrentes.  
+- **Ejemplo**: Implementa timestamps para detectar cambios simultáneos en listados.
+
+
+#### **Optimización de Consultas**  
+- **Práctica**: Usa índices y consultas eficientes en Supabase.  
+- **Ejemplo**: Indexa campos como `price` y `location` en la tabla de propiedades.
+
+
+#### **Notificaciones en Tiempo Real**  
+- **Práctica**: Aprovecha Supabase Realtime para actualizaciones instantáneas.  
+- **Ejemplo**: Suscríbete a cambios en mensajes para notificar a los usuarios.
+
+
+#### **Buenas Prácticas de UX**  
+- **Práctica**: Diseña interfaces intuitivas para listados dinámicos con Shadcn y Tailwind CSS.  
+- **Ejemplo**: Usa formularios modulares para campos configurables.
+
+
+---
+
+
+### 5. Aplicación Práctica en InmoMarket
+Aquí tienes ejemplos concretos para implementar estas prácticas en tu app:
+
+
+#### **Organización de Rutas API con SOLID**  
+- **Ejemplo**: Controladores separados por recurso.  
+```tsx
+// pages/api/properties.ts
+import { PropertyController } from "@/controllers/propertyController";
+
+
+export default async function handler(req, res) {
+  const controller = new PropertyController();
+  if (req.method === "POST") {
+    await controller.createProperty(req, res);
+  } else {
+    res.status(405).json({ message: "Método no permitido" });
+  }
+}
+```
+
+
+#### **Función Limpia para Supabase**  
+- **Ejemplo**: Encapsula consultas reutilizables.  
+```tsx
+async function getUserProperties(userId: string) {
+  const { data, error } = await supabase
+    .from("properties")
+    .select("*")
+    .eq("author_id", userId)
+    .order("created_at", { ascending: false });
+  if (error) throw new Error(error.message);
+  return data;
+}
+```
+
+
+#### **Repository para Propiedades**  
+- **Ejemplo**: Abstrae el acceso a propiedades.  
+```tsx
+class PropertyRepository {
+  async getPropertiesByType(type: string) {
+    const { data } = await supabase
+      .from("properties")
+      .select("*")
+      .eq("type", type)
+      .order("created_at");
+    return data;
+  }
+}
+```
+
+
+---
+
+
+### Conclusión
+Esta **Guía de Mejores Prácticas** asegura que el desarrollo de InmoMarket siga estándares de alta calidad, permitiendo que la plataforma sea escalable, segura y fácil de mantener. Al aplicar estas recomendaciones, tu equipo podrá construir una aplicación robusta y eficiente, lista para adaptarse a las necesidades del mercado inmobiliario.
+
+
+---
+
+
+
+
+---
+
+
+## Sección 11: Guía de Despliegue
+
+
+La **Guía de Despliegue** de InmoMarket ofrece instrucciones detalladas para llevar la aplicación desde el entorno de desarrollo a producción, asegurando que todos los servicios y configuraciones estén correctamente implementados. Esta guía está diseñada para desarrolladores que desean desplegar la plataforma en **Vercel**, integrando servicios como **Supabase** (autenticación y base de datos) y **Mercado Pago** (pagos), mientras se garantiza seguridad y rendimiento óptimos.
+
+
+### Objetivos
+- Desplegar InmoMarket de manera eficiente y segura en producción.
+- Configurar correctamente los servicios externos (Supabase, Mercado Pago).
+- Implementar buenas prácticas de seguridad y rendimiento.
+- Facilitar la escalabilidad y el mantenimiento a largo plazo.
+
+
+### Requisitos Previos
+Antes de empezar, asegúrate de contar con:
+- Una cuenta activa en [Vercel](https://vercel.com/) para alojar la aplicación.
+- Un proyecto configurado en [Supabase](https://supabase.com/) para autenticación, base de datos y almacenamiento.
+- Una cuenta en [Mercado Pago](https://www.mercadopago.com/) con credenciales de producción.
+- Las claves API y credenciales de los servicios mencionados.
+- El código fuente de InmoMarket alojado en un repositorio de GitHub.
+
+
+---
+
+
+### Pasos para el Despliegue
+
+
+#### 1. Configuración de Supabase para Producción
+- **Objetivo**: Preparar Supabase para un entorno seguro y escalable.
+- **Pasos**:
+  1. Accede al dashboard de Supabase y ve a **Settings > General**.
+  2. Activa el modo de producción para habilitar configuraciones avanzadas.
+  3. Habilita **Row-Level Security (RLS)** en todas las tablas para controlar accesos según roles (ej. comprador, vendedor, agente, administrador).
+  4. Genera una clave de API de producción y guárdala de forma segura.
+  5. Define políticas de RLS para cada tabla (ej. solo el autor puede editar una propiedad).
+
+
+#### 2. Configuración de Mercado Pago para Producción
+- **Objetivo**: Integrar Mercado Pago para procesar pagos en producción.
+- **Pasos**:
+  1. Crea una cuenta en Mercado Pago y obtén tu **public key** y **access token** de producción.
+  2. Configura los webhooks en Mercado Pago para recibir notificaciones de pagos en la URL de tu API (ej. `https://tu-dominio.com/api/webhooks/mercadopago`).
+  3. Asegúrate de que los métodos de pago estén habilitados según las necesidades del mercado (tarjetas, transferencias, efectivo).
+
+
+#### 3. Configuración de Variables de Entorno
+- **Objetivo**: Establecer las variables necesarias en Vercel para conectar los servicios.
+- **Pasos**:
+  1. En Vercel, ve a **Settings > Environment Variables** de tu proyecto.
+  2. Añade las siguientes variables:
+     - `NEXT_PUBLIC_SUPABASE_URL`: URL pública de Supabase.
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Clave anónima de Supabase.
+     - `SUPABASE_SERVICE_ROLE_KEY`: Clave de servicio de Supabase.
+     - `MERCADO_PAGO_PUBLIC_KEY`: Clave pública de Mercado Pago.
+     - `MERCADO_PAGO_ACCESS_TOKEN`: Token de acceso de Mercado Pago.
+     - `NEXT_PUBLIC_APP_URL`: URL de producción (ej. `https://inmomarket.com`).
+  3. Marca las variables como "Production" para que se usen en despliegues de producción.
+
+
+#### 4. Despliegue en Vercel
+- **Objetivo**: Publicar la aplicación en producción usando Vercel.
+- **Pasos**:
+  1. Conecta tu repositorio de GitHub a Vercel.
+  2. Selecciona la rama principal (ej. `main`) como fuente.
+  3. Configura el framework como **Next.js**.
+  4. Revisa las variables de entorno y haz clic en **Deploy**.
+
+
+#### 5. Verificación Post-Despliegue
+- **Objetivo**: Confirmar que la aplicación funciona correctamente en producción.
+- **Pasos**:
+  1. Visita la URL generada por Vercel y prueba el registro e inicio de sesión.
+  2. Crea un listado de prueba y verifica que se guarde en Supabase.
+  3. Realiza una transacción de prueba con Mercado Pago (usa montos pequeños).
+  4. Envía un mensaje y comprueba las notificaciones en tiempo real.
+  5. Asegúrate de que los correos se envíen correctamente (si usas un servicio como Resend).
+
+
+#### 6. Configuración de Dominio Personalizado (Opcional)
+- **Objetivo**: Asociar un dominio propio a la aplicación.
+- **Pasos**:
+  1. En Vercel, ve a **Settings > Domains** y añade tu dominio.
+  2. Configura los registros DNS según las instrucciones de Vercel.
+  3. Verifica que el certificado SSL esté activo y el dominio funcione.
+
+
+#### 7. Monitoreo y Logging
+- **Objetivo**: Habilitar herramientas para supervisar rendimiento y errores.
+- **Pasos**:
+  1. Activa **Vercel Analytics** para monitorear tráfico y rendimiento.
+  2. Integra herramientas como **Sentry** o **LogRocket** para capturar errores.
+  3. Configura alertas para problemas críticos en producción.
+
+
+---
+
+
+### Mejores Prácticas para Producción
+- **Seguridad**:
+  - Nunca almacenes claves o secretos en el código fuente.
+  - Fuerza el uso de HTTPS y redirige solicitudes HTTP.
+- **Rendimiento**:
+  - Activa el caching para assets estáticos y datos frecuentes.
+  - Optimiza imágenes y recursos multimedia.
+- **Escalabilidad**:
+  - Habilita el autoescalado en Vercel para manejar picos de tráfico.
+  - Monitorea y ajusta los recursos de la base de datos según la demanda.
+
+
+---
+
+
+### Solución de Problemas Comunes
+- **Error de Autenticación**: Verifica las claves de Supabase y las políticas de RLS.
+- **Pagos Fallidos**: Revisa las credenciales de Mercado Pago y la configuración de webhooks.
+- **Despliegue Fallido**: Consulta los logs de Vercel para identificar el problema.
+
+
+---
+
+
+
+
+---
+
+
+### Sección 12: Mantenimiento y Actualizaciones
+
+
+Esta sección describe las estrategias y procedimientos para mantener **InmoMarket** actualizado, seguro y funcional después de su despliegue inicial. Cubre la gestión de versiones, actualizaciones de dependencias, aplicación de parches de seguridad y políticas de respaldo, todo adaptado al stack tecnológico de la aplicación: **Next.js**, **Supabase**, **Mercado Pago**, **Shadcn** y **Tailwind CSS**.
+
+
+#### 12.1 Gestión de Versiones
+
+
+La gestión de versiones asegura que los cambios en el código sean rastreables y que la aplicación evolucione de manera ordenada.
+
+
+- **Herramienta**: Se utiliza **Git** como sistema de control de versiones, con el repositorio alojado en GitHub (o la plataforma de tu preferencia).
+- **Estrategia de Versionado**: Se sigue el estándar **Semantic Versioning (SemVer)**:
+  - Formato: `MAJOR.MINOR.PATCH` (ejemplo: `1.0.0`).
+  - **MAJOR**: Cambios importantes que rompen compatibilidad (ejemplo: migración a una nueva versión de Next.js).
+  - **MINOR**: Nuevas funcionalidades sin romper compatibilidad (ejemplo: agregar una nueva característica al dashboard).
+  - **PATCH**: Correcciones de errores o mejoras menores (ejemplo: solucionar un bug en el formulario de contacto).
+- **Flujo de Trabajo**: 
+  - Rama principal (`main`) para la versión en producción.
+  - Rama de desarrollo (`dev`) para integrar cambios.
+  - Ramas específicas (`feature/nueva-funcionalidad`) para desarrollar nuevas características.
+  - Uso de **pull requests** para revisiones y merges.
+
+
+#### 12.2 Actualizaciones de Dependencias
+
+
+Mantener las dependencias actualizadas es clave para aprovechar mejoras y evitar vulnerabilidades.
+
+
+- **Frecuencia**: Revisión mensual de las dependencias principales (Next.js, Supabase SDK, Mercado Pago SDK, etc.).
+- **Herramientas**:
+  - **npm** o **yarn** para gestionar paquetes.
+  - **Dependabot** (integrado en GitHub) para recibir alertas sobre actualizaciones y vulnerabilidades.
+- **Proceso**:
+  1. Ejecutar `npm outdated` o `yarn outdated` para identificar versiones desactualizadas.
+  2. Revisar las notas de lanzamiento (release notes) de cada dependencia para evaluar cambios importantes.
+  3. Actualizar en un entorno de desarrollo local: `npm install <paquete>@latest` o `yarn upgrade <paquete>`.
+  4. Probar la aplicación con la suite de pruebas automatizadas (ver Sección 8: Estrategia de Pruebas).
+  5. Si las pruebas pasan, realizar un commit y desplegar el cambio.
+- **Consideraciones**: 
+  - Evitar actualizaciones automáticas en producción para prevenir interrupciones.
+  - Priorizar actualizaciones críticas (parches de seguridad) sobre mejoras menores.
+
+
+#### 12.3 Parches de Seguridad
+
+
+La seguridad es una prioridad en un marketplace como InmoMarket, donde se manejan datos sensibles de usuarios y transacciones.
+
+
+- **Monitoreo**: 
+  - Suscripción a boletines de seguridad de Next.js, Supabase y Mercado Pago.
+  - Uso de Dependabot para alertas de vulnerabilidades en dependencias.
+- **Procedimiento**:
+  1. Identificar la vulnerabilidad reportada (por ejemplo, una falla en una librería usada por Shadcn).
+  2. Actualizar la dependencia afectada a la versión parcheada.
+  3. Realizar pruebas rápidas para verificar que no haya regresiones.
+  4. Desplegar el parche en producción lo antes posible (ver Sección 11: Guía de Despliegue).
+- **Tiempo de Respuesta**: Aplicar parches críticos en un plazo máximo de 24-48 horas tras la notificación.
+
+
+#### 12.4 Backups y Restauración
+
+
+Los respaldos garantizan la recuperación ante fallos en la base de datos o errores humanos.
+
+
+- **Herramienta**: **Supabase** proporciona herramientas integradas para respaldos automáticos.
+- **Política de Backups**:
+  - Frecuencia: Diaria para la base de datos (tablas de usuarios, propiedades, transacciones).
+  - Retención: 7 días para backups diarios, 30 días para backups semanales.
+  - Almacenamiento: Copias en Supabase y una copia adicional en un bucket de AWS S3 (o servicio similar).
+- **Procedimiento de Restauración**:
+  1. Identificar el punto de restauración necesario (fecha y hora del backup).
+  2. Usar el panel de Supabase para restaurar la base de datos a partir del backup seleccionado.
+  3. Verificar la integridad de los datos restaurados (ejemplo: consultar registros de usuarios y propiedades).
+  4. Notificar al equipo y a los usuarios si hubo interrupciones prolongadas.
+- **Pruebas**: Realizar simulacros trimestrales de restauración para validar el proceso.
+
+
+#### 12.5 Ciclo de Vida del Software
+
+
+El ciclo de vida de InmoMarket incluye mantenimiento continuo y eventuales actualizaciones mayores.
+
+
+- **Mantenimiento Continuo**: Corrección de bugs reportados por usuarios, mejoras menores en la interfaz (usando Tailwind CSS y Shadcn), y optimización del rendimiento.
+- **Actualizaciones Mayores**: 
+  - Planificación semestral o anual para nuevas funcionalidades importantes (ejemplo: integración con nuevas pasarelas de pago).
+  - Evaluación de la arquitectura técnica (ver Sección 5) para decidir si es necesario refactorizar o migrar a nuevas tecnologías.
+- **Deprecación**: Si una funcionalidad o tecnología queda obsoleta (ejemplo: una versión antigua de Next.js), se notificará a los usuarios con al menos 3 meses de aviso antes de eliminarla.
+
+
+---
