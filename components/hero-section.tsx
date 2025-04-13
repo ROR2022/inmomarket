@@ -5,7 +5,7 @@ export function HeroSection() {
   return (
     <div className="relative py-16 md:py-24 overflow-hidden rounded-lg">
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/5 z-0" />
-      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=600&width=1200')] bg-cover bg-center opacity-20 z-[-1]" />
+      <div className="absolute inset-0 bg-[url('/casa2.jpeg')] bg-cover bg-center opacity-20 z-[-1]" />
 
       <div className="container relative z-10">
         <div className="max-w-2xl">

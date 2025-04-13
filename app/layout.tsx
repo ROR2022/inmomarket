@@ -1,4 +1,3 @@
-
 import React from "react";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
@@ -7,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import CookieBanner from '@/components/CookieBanner'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -14,8 +14,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "InmoMarket",
+  description: "InmoMarket es una plataforma web diseñada para simplificar la compra, venta y alquiler de propiedades inmobiliarias. Conecta a compradores, vendedores y agentes inmobiliarios en un entorno digital intuitivo, seguro y eficiente, permitiendo a los usuarios explorar, listar y gestionar propiedades desde un solo lugar.",
 };
 
 const geistSans = Geist({
@@ -38,6 +38,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster />
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>

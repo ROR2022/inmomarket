@@ -26,9 +26,6 @@ export function MobileNav() {
             <Link href="/agentes" className="text-sm font-medium hover:text-primary">
               Agentes
             </Link>
-            <Link href="/blog" className="text-sm font-medium hover:text-primary">
-              Blog
-            </Link>
             <Link href="/contacto" className="text-sm font-medium hover:text-primary">
               Contacto
             </Link>

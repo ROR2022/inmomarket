@@ -17,10 +17,11 @@ export function PropertyCard({ id = "1", isFavorite = false }: PropertyCardProps
         <Link href={`/propiedades/${id}`}>
           <div className="aspect-[16/9] overflow-hidden">
             <Image
-              src="/placeholder.svg?height=300&width=500"
+              src="/casa1.jpeg"
               alt="Propiedad"
               width={500}
               height={300}
+              priority
               className="object-cover w-full h-full transition-transform hover:scale-105"
             />
           </div>

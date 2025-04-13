@@ -1,4 +1,5 @@
 import Link from "next/link"
+import LegalLinks from "@/components/LegalLinks"
 
 export default function Footer() {
   return (
@@ -30,11 +31,6 @@ export default function Footer() {
                   Agentes inmobiliarios
                 </Link>
               </li>
-              <li>
-                <Link href="/blog" className="text-sm hover:underline">
-                  Blog
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -52,13 +48,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/preguntas-frecuentes" className="text-sm hover:underline">
+                <Link href="/faq" className="text-sm hover:underline">
                   Preguntas frecuentes
-                </Link>
-              </li>
-              <li>
-                <Link href="/ayuda" className="text-sm hover:underline">
-                  Centro de ayuda
                 </Link>
               </li>
             </ul>
@@ -66,28 +57,13 @@ export default function Footer() {
 
           <div>
             <h3 className="font-bold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/terminos" className="text-sm hover:underline">
-                  Términos y condiciones
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacidad" className="text-sm hover:underline">
-                  Política de privacidad
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookies" className="text-sm hover:underline">
-                  Política de cookies
-                </Link>
-              </li>
-            </ul>
+            <LegalLinks variant="vertical" className="text-sm" />
           </div>
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} InmoMarket. Todos los derechos reservados.</p>
+          <LegalLinks variant="footer" className="mt-4" />
         </div>
       </div>
     </footer>
