@@ -6,19 +6,56 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Heart } from "lucide-react"
 
 interface PropertyCardProps {
-  id?: string
+  id: string
+  title: string
+  location: string
+  price: number
+  currency: string
+  operation: string
+  bedrooms?: number
+  bathrooms?: number
+  area?: number
+  imageUrl?: string
   isFavorite?: boolean
 }
 
-export function PropertyCard({ id = "1", isFavorite = false }: PropertyCardProps) {
+export function PropertyCard({ 
+  id, 
+  title, 
+  location, 
+  price, 
+  currency, 
+  operation, 
+  bedrooms, 
+  bathrooms, 
+  area, 
+  imageUrl = "/casa1.jpeg", 
+  isFavorite = false 
+}: PropertyCardProps) {
+  // Formato del precio con separador de miles
+  const formattedPrice = new Intl.NumberFormat('es-MX', { 
+    style: 'decimal',
+    maximumFractionDigits: 0
+  }).format(price);
+  
+  // Mapeo de tipos de operación a etiquetas
+  const operationLabels: Record<string, string> = {
+    'venta': 'Venta',
+    'alquiler': 'Alquiler',
+    'alquiler_temporal': 'Temporal'
+  };
+  
+  // Etiqueta de operación a mostrar
+  const operationLabel = operationLabels[operation] || 'Venta';
+  
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-md">
       <div className="relative">
         <Link href={`/propiedades/${id}`}>
           <div className="aspect-[16/9] overflow-hidden">
             <Image
-              src="/casa1.jpeg"
-              alt="Propiedad"
+              src={imageUrl}
+              alt={title}
               width={500}
               height={300}
               priority
@@ -33,23 +70,25 @@ export function PropertyCard({ id = "1", isFavorite = false }: PropertyCardProps
         >
           <Heart className={`h-5 w-5 ${isFavorite ? "fill-current" : ""}`} />
         </Button>
-        <Badge className="absolute top-2 left-2">Venta</Badge>
+        <Badge className="absolute top-2 left-2" variant={operation === 'venta' ? 'default' : 'secondary'}>
+          {operationLabel}
+        </Badge>
       </div>
 
       <CardContent className="p-4">
         <div className="mb-2">
           <Link href={`/propiedades/${id}`} className="hover:underline">
-            <h3 className="font-bold text-lg line-clamp-1">Casa moderna con jardín</h3>
+            <h3 className="font-bold text-lg line-clamp-1">{title}</h3>
           </Link>
-          <p className="text-sm text-muted-foreground line-clamp-1">Colonia Roma, Ciudad de México</p>
+          <p className="text-sm text-muted-foreground line-clamp-1">{location}</p>
         </div>
 
-        <p className="font-bold text-lg">$2,500,000 MXN</p>
+        <p className="font-bold text-lg">${formattedPrice} {currency}</p>
 
         <div className="flex gap-3 mt-3 text-sm text-muted-foreground">
-          <div>3 hab.</div>
-          <div>2 baños</div>
-          <div>150 m²</div>
+          {bedrooms !== undefined && <div>{bedrooms} hab.</div>}
+          {bathrooms !== undefined && <div>{bathrooms} baños</div>}
+          {area !== undefined && <div>{area} m²</div>}
         </div>
       </CardContent>
 
@@ -58,7 +97,7 @@ export function PropertyCard({ id = "1", isFavorite = false }: PropertyCardProps
           <Link href={`/propiedades/${id}`}>Ver detalles</Link>
         </Button>
         <Button size="sm" asChild>
-          <Link href={`/contacto/${id}`}>Contactar</Link>
+          <Link href={`/contacto?property=${id}`}>Contactar</Link>
         </Button>
       </CardFooter>
     </Card>

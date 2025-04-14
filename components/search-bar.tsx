@@ -1,22 +1,53 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [propertyType, setPropertyType] = useState("")
-  const [operation, setOperation] = useState("")
+export function SearchBarContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // Inicializar estado con valores de URL si existen
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || "");
+  const [propertyType, setPropertyType] = useState(searchParams.get('type') || "all");
+  const [operation, setOperation] = useState(searchParams.get('operation') || "all");
+
+  // Actualizar estado si cambian los parámetros URL
+  useEffect(() => {
+    setSearchTerm(searchParams.get('search') || "");
+    setPropertyType(searchParams.get('type') || "all");
+    setOperation(searchParams.get('operation') || "all");
+  }, [searchParams]);
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would implement the search logic
-    console.log({ searchTerm, propertyType, operation })
+    e.preventDefault();
+    
+    // Construir URL con parámetros de búsqueda
+    const params = new URLSearchParams();
+    
+    // Añadir parámetros solo si tienen valor y no son el valor por defecto "all"
+    if (searchTerm) params.set('search', searchTerm);
+    if (propertyType && propertyType !== "all") params.set('type', propertyType);
+    if (operation && operation !== "all") params.set('operation', operation);
+    
+    // Preservar otros filtros que podrían estar activos
+    const currentParams = new URLSearchParams(searchParams.toString());
+    ['minPrice', 'maxPrice', 'minArea', 'maxArea', 'features'].forEach(param => {
+      if (currentParams.has(param)) {
+        params.set(param, currentParams.get(param)!);
+      }
+    });
+    
+    // Resetear la paginación cuando se hace una nueva búsqueda
+    params.delete('page');
+    
+    // Redirigir a la página de exploración con los filtros
+    router.push(`/explorar${params.toString() ? `?${params.toString()}` : ''}`);
   }
 
   return (
@@ -37,6 +68,7 @@ export function SearchBar() {
           <SelectValue placeholder="Tipo de propiedad" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="all">Todos los tipos</SelectItem>
           <SelectItem value="casa">Casa</SelectItem>
           <SelectItem value="departamento">Departamento</SelectItem>
           <SelectItem value="terreno">Terreno</SelectItem>
@@ -50,13 +82,22 @@ export function SearchBar() {
           <SelectValue placeholder="Operación" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="all">Todas las operaciones</SelectItem>
           <SelectItem value="venta">Venta</SelectItem>
           <SelectItem value="alquiler">Alquiler</SelectItem>
-          <SelectItem value="temporal">Alquiler temporal</SelectItem>
+          <SelectItem value="alquiler_temporal">Alquiler temporal</SelectItem>
         </SelectContent>
       </Select>
 
       <Button type="submit">Buscar</Button>
     </form>
+  )
+}
+
+export function SearchBar() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchBarContent />
+    </Suspense>
   )
 }
