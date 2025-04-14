@@ -4,10 +4,14 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { UserNav } from "@/components/user-nav"
 import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
+import { createClient } from "@/utils/supabase/server"
 
-export default function Header() {
-  // This would be replaced with actual auth logic
-  const isLoggedIn = false
+export default async function Header() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const isLoggedIn = !!user
+
 
   return (
     <header className="border-b">

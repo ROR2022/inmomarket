@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Home, Users, Shield } from 'lucide-react';
 import Image from 'next/image';
 
 export const metadata = {
@@ -67,6 +67,43 @@ export default async function SobreNosotrosPage() {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver al inicio
           </Link>
+        </div>
+
+        {/* Nuestros Servicios Section */}
+        <div className="mb-16 bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+          <h2 className="text-3xl font-bold text-primary mb-8 text-center">Nuestros Servicios</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <Home className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Propiedades exclusivas</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Ofrecemos acceso a propiedades seleccionadas y verificadas con los más altos estándares de calidad en ubicaciones privilegiadas.
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <Users className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Atención personalizada</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Contamos con un equipo de profesionales disponibles 24/7 para atender todas sus consultas y guiarle durante todo el proceso de compra o alquiler.
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <Shield className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Garantía inmobiliaria</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Todas nuestras propiedades cuentan con garantía legal completa, asegurando transparencia y seguridad en cada transacción.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -156,7 +193,10 @@ export default async function SobreNosotrosPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="text-center">
                     <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/20">
-                      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40"></div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40" aria-hidden="true"></div>
+                      <div className="flex items-center justify-center h-full">
+                        <span className="sr-only">Foto de María Rodríguez</span>
+                      </div>
                     </div>
                     <h3 className="font-bold text-lg">María Rodríguez</h3>
                     <p className="text-primary font-medium">Fundadora y CEO</p>
@@ -164,7 +204,10 @@ export default async function SobreNosotrosPage() {
                   
                   <div className="text-center">
                     <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/20">
-                      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40"></div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40" aria-hidden="true"></div>
+                      <div className="flex items-center justify-center h-full">
+                        <span className="sr-only">Foto de Carlos Vega</span>
+                      </div>
                     </div>
                     <h3 className="font-bold text-lg">Carlos Vega</h3>
                     <p className="text-primary font-medium">CTO</p>
@@ -172,7 +215,10 @@ export default async function SobreNosotrosPage() {
                   
                   <div className="text-center">
                     <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/20">
-                      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40"></div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40" aria-hidden="true"></div>
+                      <div className="flex items-center justify-center h-full">
+                        <span className="sr-only">Foto de Ana Martínez</span>
+                      </div>
                     </div>
                     <h3 className="font-bold text-lg">Ana Martínez</h3>
                     <p className="text-primary font-medium">Directora de Operaciones</p>
