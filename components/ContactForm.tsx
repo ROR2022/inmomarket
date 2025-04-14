@@ -1,5 +1,6 @@
 'use client';
 
+import { Property } from '@/types/property';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -11,11 +12,13 @@ type ContactFormData = {
   message: string;
 };
 
-export default function ContactForm() {
+export default function ContactForm({property}: {property: Property | undefined}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
   
+  //console.log('contact form property: ', property)
+  const asuntoTemp = property?.title ? `Me interesa la propiedad: ${property.title} id: ${property.id}` : '';
   const {
     register,
     handleSubmit,
@@ -126,6 +129,7 @@ export default function ContactForm() {
             <input
               id="subject"
               type="text"
+              value={asuntoTemp}
               className="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               {...register('subject', { required: 'Este campo es obligatorio' })}
             />

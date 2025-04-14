@@ -15,7 +15,7 @@ interface PropertyCardProps {
   bedrooms?: number
   bathrooms?: number
   area?: number
-  imageUrl?: string
+  imageUrl?: string | null
   isFavorite?: boolean
 }
 
@@ -32,6 +32,9 @@ export function PropertyCard({
   imageUrl = "/casa1.jpeg", 
   isFavorite = false 
 }: PropertyCardProps) {
+  // Ensure imageUrl is never null
+  const imageSource = imageUrl || "/casa1.jpeg";
+  
   // Formato del precio con separador de miles
   const formattedPrice = new Intl.NumberFormat('es-MX', { 
     style: 'decimal',
@@ -54,7 +57,7 @@ export function PropertyCard({
         <Link href={`/propiedades/${id}`}>
           <div className="aspect-[16/9] overflow-hidden">
             <Image
-              src={imageUrl}
+              src={imageSource}
               alt={title}
               width={500}
               height={300}
@@ -94,7 +97,7 @@ export function PropertyCard({
 
       <CardFooter className="p-4 pt-0 flex justify-between">
         <Button variant="outline" size="sm" asChild>
-          <Link href={`/propiedades/${id}`}>Ver detalles</Link>
+          <Link href={`/explorar/${id}`}>Ver detalles</Link>
         </Button>
         <Button size="sm" asChild>
           <Link href={`/contacto?property=${id}`}>Contactar</Link>

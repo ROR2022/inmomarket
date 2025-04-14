@@ -1,12 +1,15 @@
 import { Container } from "@/components/Container";
 import ContactForm from "@/components/ContactForm";
+import { getPropertyById } from "../actionsProperties";
 
 export const metadata = {
   title: "Contacto | InmoMarket",
   description: "Contáctanos para cualquier consulta, sugerencia o para programar una cita con uno de nuestros agentes inmobiliarios.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({searchParams}: {searchParams: Promise<{property: string}>}) {
+  const {property} = await searchParams;
+  const propiedad = property ? await getPropertyById(property) : undefined;
   return (
     <div className="py-12 bg-slate-50 dark:bg-slate-950 min-h-screen">
       <Container>
@@ -55,7 +58,7 @@ export default function ContactPage() {
             </div>
           </div>
           
-          <ContactForm />
+          <ContactForm property={propiedad || undefined} />
           
           <div className="mt-16">
             <h2 className="text-2xl font-bold text-center mb-6">Nuestra Ubicación</h2>
