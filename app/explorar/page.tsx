@@ -5,7 +5,7 @@ import { PropertyFilters } from '@/components/property-filters';
 import { PropertyCard } from '@/components/property-card';
 import { getProperties } from '@/app/actionsProperties';
 import { Separator } from '@/components/ui/separator';
-import { MapPin } from "lucide-react"
+import { Link, MapPin } from "lucide-react"
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -95,7 +95,7 @@ export default async function ExplorarPage({ searchParams }: ExplorarPageProps) 
                   <h3 className="text-lg font-medium mb-2">No se encontraron propiedades</h3>
                   <p className="text-muted-foreground mb-6">Intenta con otros filtros o amplía tu búsqueda</p>
                   <Button variant="outline" asChild>
-                    <a href="/explorar">Ver todas las propiedades</a>
+                    <Link href="/explorar">Ver todas las propiedades</Link>
                   </Button>
                 </div>
               ) : (
