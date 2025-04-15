@@ -49,7 +49,7 @@ export async function UserNav() {
               <span>Panel de control</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
+          {/* <DropdownMenuItem asChild>
             <Link href="/dashboard?tab=mensajes" className="cursor-pointer w-full flex">
               <MessageSquare className="mr-2 h-4 w-4" />
               <span>Mensajes</span>
@@ -66,7 +66,7 @@ export async function UserNav() {
               <Settings className="mr-2 h-4 w-4" />
               <span>Configuración</span>
             </Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         {/**Este deberia ser un link que envie a la pagina de logout */}

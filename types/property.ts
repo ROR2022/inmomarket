@@ -73,9 +73,22 @@ export interface PropertyFilters {
   sort?: 'price_asc' | 'price_desc' | 'date_desc' | 'date_asc';
 }
 
-export interface SearchParams extends PropertyFilters {
+export interface SearchParams {
+  search?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  minArea?: number; 
+  maxArea?: number;
+  operation?: string;
+  type?: string;
+  bedrooms?: number;
+  bathrooms?: number;
+  parking?: number;
+  features?: string[];
   page?: number;
   pageSize?: number;
+  sort?: 'date_asc' | 'date_desc' | 'price_asc' | 'price_desc';
+  status?: 'active' | 'pending' | 'inactive' | 'deleted';
 }
 
 export interface PaginationInfo {
