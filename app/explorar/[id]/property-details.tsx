@@ -1,41 +1,59 @@
-"use client"
+'use client';
 
-import React from 'react'
-import { Property } from '@/types/property'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { Card, CardContent } from '@/components/ui/card'
-import { 
-  Bed, Bath, Square, Home, MapPin, Calendar, Heart,
-  Share2, ChevronLeft, Clock, Tag
-} from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import React, { useState } from 'react';
+import { Property } from '@/types/property';
+import { Container } from '@/components/Container';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { Card, CardContent } from '@/components/ui/card';
+import axios from 'axios';
+import {
+  Bed,
+  Bath,
+  Square,
+  Home,
+  MapPin,
+  Calendar,
+  Heart,
+  Share2,
+  ChevronLeft,
+  Clock,
+  Tag,
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import ModalDeposit from './modal-deposit';
 
 const PropertyDetails = ({ property }: { property: Property }) => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
   // Formato del precio con separador de miles
-  const formattedPrice = new Intl.NumberFormat('es-MX', { 
+  const formattedPrice = new Intl.NumberFormat('es-MX', {
     style: 'decimal',
-    maximumFractionDigits: 0
+    maximumFractionDigits: 0,
   }).format(property.price);
 
   // Mapeo de tipos de propiedad a nombres más amigables
   const propertyTypes = {
-    'casa': 'Casa',
-    'departamento': 'Departamento',
-    'terreno': 'Terreno',
-    'oficina': 'Oficina',
-    'local': 'Local comercial'
+    casa: 'Casa',
+    departamento: 'Departamento',
+    terreno: 'Terreno',
+    oficina: 'Oficina',
+    local: 'Local comercial',
   };
 
   // Mapeo de tipos de operación a etiquetas
   const operationLabels: Record<string, string> = {
-    'venta': 'Venta',
-    'alquiler': 'Alquiler',
-    'alquiler_temporal': 'Temporal'
+    venta: 'Venta',
+    alquiler: 'Alquiler',
+    alquiler_temporal: 'Temporal',
   };
 
   // Formato de fecha
@@ -44,14 +62,14 @@ const PropertyDetails = ({ property }: { property: Property }) => {
     return new Intl.DateTimeFormat('es-MX', {
       day: '2-digit',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     }).format(date);
   };
-  
+
   // Verificar si hay imágenes disponibles
   const propertyMedia = property.property_media || [];
   const hasImages = propertyMedia.length > 0;
-  
+
   // Obtener solo las imágenes del array de medios
   const propertyImages = propertyMedia.filter(media => media.type === 'image');
 
@@ -60,15 +78,29 @@ const PropertyDetails = ({ property }: { property: Property }) => {
 
   // Filtrar datos de contacto del propietario
   //const contactInfo = property.property_details?.details?.contactInfo || {};
-  
+
   // Determinar características reales de la propiedad
   const features = Array.isArray(property.features) ? property.features : [];
 
+  const handleDeposit = () => {
+    console.log('Hacer Deposito');
+    setIsOpenModal(true);
+  };
+
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen py-8">
+      <ModalDeposit
+        isOpen={isOpenModal}
+        onClose={() => setIsOpenModal(false)}
+        listingId={property.id}
+        listingTitle={property.title}
+      />
       <Container>
         {/* Botón de volver atrás */}
-        <Link href="/explorar" className="inline-flex items-center mb-6 text-sm text-muted-foreground hover:text-primary transition-colors">
+        <Link
+          href="/explorar"
+          className="inline-flex items-center mb-6 text-sm text-muted-foreground hover:text-primary transition-colors"
+        >
           <ChevronLeft className="h-4 w-4 mr-1" />
           Volver a la búsqueda
         </Link>
@@ -204,21 +236,27 @@ const PropertyDetails = ({ property }: { property: Property }) => {
             )}
 
             {/* Detalles extra de propiedad (si existen) */}
-            {property.property_details && Object.keys(property.property_details.details || {}).length > 0 && (
-              <Card>
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-4">Detalles adicionales</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
-                    {Object.entries(property.property_details.details || {}).map(([key, value]) => (
-                      <div key={key} className="flex items-center justify-between border-b pb-2">
-                        <span className="font-medium capitalize">{key.replace(/_/g, ' ')}</span>
-                        <span>{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+            {property.property_details &&
+              Object.keys(property.property_details.details || {}).length > 0 && (
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">Detalles adicionales</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4">
+                      {Object.entries(property.property_details.details || {}).map(
+                        ([key, value]) => (
+                          <div
+                            key={key}
+                            className="flex items-center justify-between border-b pb-2"
+                          >
+                            <span className="font-medium capitalize">{key.replace(/_/g, ' ')}</span>
+                            <span>{value}</span>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
             {/* Mapa (placeholder) */}
             {property.latitude && property.longitude && (
@@ -257,11 +295,11 @@ const PropertyDetails = ({ property }: { property: Property }) => {
                     <p className="text-sm uppercase text-muted-foreground">Publicado por</p>
                     <div className="flex items-center gap-3">
                       {property.author.avatar_url ? (
-                        <Image 
-                          src={property.author.avatar_url} 
-                          alt={property.author.username || 'Vendedor'} 
-                          width={48} 
-                          height={48} 
+                        <Image
+                          src={property.author.avatar_url}
+                          alt={property.author.username || 'Vendedor'}
+                          width={48}
+                          height={48}
                           className="rounded-full"
                         />
                       ) : (
@@ -272,7 +310,9 @@ const PropertyDetails = ({ property }: { property: Property }) => {
                         </div>
                       )}
                       <div>
-                        <p className="font-medium">{property.author.username || 'Usuario de InmoMarket'}</p>
+                        <p className="font-medium">
+                          {property.author.username || 'Usuario de InmoMarket'}
+                        </p>
                         <p className="text-sm text-muted-foreground">Propietario</p>
                       </div>
                     </div>
@@ -282,13 +322,20 @@ const PropertyDetails = ({ property }: { property: Property }) => {
                 <Separator />
 
                 {/* Acciones */}
-                <div className="space-y-3">
-                  <Button className="w-full" size="lg" asChild>
-                    <Link href={`/contacto?property=${property.id}`}>
-                       Contactar
-                    </Link>
+                <div className="flex flex-col gap-3">
+                  <Button className="w-full" size="lg">
+                    <Link href={`/contacto?property=${property.id}`}>Contactar</Link>
                   </Button>
-                  
+
+                  <Button
+                    onClick={handleDeposit}
+                    variant="outline"
+                    color="secondary"
+                    className="w-full"
+                    size="lg"
+                  >
+                    Hacer Deposito
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -296,7 +343,7 @@ const PropertyDetails = ({ property }: { property: Property }) => {
         </div>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default PropertyDetails
+export default PropertyDetails;
