@@ -99,7 +99,7 @@ export default function DepositManagement({ initialDeposits }: DepositManagement
 
                   <div className="flex flex-wrap gap-2 mt-4 md:mt-0">
                     <Button size="sm" variant="outline" asChild>
-                      <Link href={`/propiedades/${deposit.listing_id}`}>
+                      <Link href={`/explorar/${deposit.listing_id}`}>
                         <Eye className="h-4 w-4 mr-2" />
                         Ver propiedad
                       </Link>

@@ -9,9 +9,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Bell, LogOut, MessageSquare, Settings, User } from "lucide-react"
+import { Bell, LogOut, MessageSquare, Settings, User, Shield } from "lucide-react"
 import Link from "next/link"
 import { createClient } from "@/utils/supabase/server"
+import { isUserAdmin } from "@/utils/admin-auth"
 
 export async function UserNav() {
   const supabase = await createClient()
@@ -24,6 +25,17 @@ export async function UserNav() {
   const fullName = user?.user_metadata?.full_name?.split(' ')[0]
   //o sacarlo de email
   const emailName = user?.email?.split('@')[0]
+  
+  // Verificar si el usuario es administrador
+  let isAdmin = false;
+  let adminLevel = null;
+  
+  if (user) {
+    const adminStatus = await isUserAdmin(user.id);
+    isAdmin = adminStatus.isAdmin;
+    adminLevel = adminStatus.adminLevel;
+  }
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,6 +61,14 @@ export async function UserNav() {
               <span>Panel de control</span>
             </Link>
           </DropdownMenuItem>
+          {isAdmin && (
+            <DropdownMenuItem asChild>
+              <Link href="/admin" className="cursor-pointer w-full flex">
+                <Shield className="mr-2 h-4 w-4" />
+                <span>Administración {adminLevel && `(${adminLevel})`}</span>
+              </Link>
+            </DropdownMenuItem>
+          )}
           {/* <DropdownMenuItem asChild>
             <Link href="/dashboard?tab=mensajes" className="cursor-pointer w-full flex">
               <MessageSquare className="mr-2 h-4 w-4" />

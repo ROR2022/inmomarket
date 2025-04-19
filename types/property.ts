@@ -38,6 +38,7 @@ export interface Property {
 export interface ProfileMinimal {
   id: string;
   username?: string;
+  email?: string;
   avatar_url?: string;
 }
 
